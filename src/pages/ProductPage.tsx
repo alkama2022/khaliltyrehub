@@ -25,6 +25,7 @@ import { useToast } from '../context/ToastContext'
 import { businessConfig } from '../config/business'
 import { formatCurrency, formatDate, pluralize } from '../lib/format'
 import { getWhatsAppUrl } from '../lib/whatsapp'
+import { usePageMeta } from '../hooks/usePageMeta'
 
 const ratingBreakdown = (rating: number, total: number) => {
   const five = Math.round(total * Math.max(0.58, (rating - 3) / 2.25))
@@ -42,6 +43,16 @@ const ratingBreakdown = (rating: number, total: number) => {
 export function ProductPage() {
   const { id } = useParams()
   const { products, loading } = useProducts()
+  const productForMeta = products.find((item) => item.id === id)
+  usePageMeta({
+    title: productForMeta
+      ? `${productForMeta.brand} ${productForMeta.name}`
+      : 'Tyre not found',
+    description: productForMeta?.description || 'View tyre specifications, availability and customer reviews.',
+    path: productForMeta ? `/tyre/${productForMeta.id}` : '/shop',
+    image: productForMeta?.images[0],
+    noIndex: !productForMeta && !products.length,
+  })
   const { addItem } = useCart()
   const { showToast } = useToast()
   const [selectedImage, setSelectedImage] = useState(0)

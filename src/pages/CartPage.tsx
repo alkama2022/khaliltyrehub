@@ -19,9 +19,16 @@ import { WhatsAppCheckoutModal } from '../components/WhatsAppCheckoutModal'
 import { useCart } from '../context/CartContext'
 import { useToast } from '../context/ToastContext'
 import { formatCurrency, pluralize } from '../lib/format'
+import { usePageMeta } from '../hooks/usePageMeta'
 import type { CartLine } from '../types'
 
 export function CartPage() {
+  usePageMeta({
+    title: 'Shopping Cart',
+    description: 'Review your tyre order and continue through WhatsApp checkout.',
+    path: '/cart',
+    noIndex: true,
+  })
   const {
     items,
     itemCount,

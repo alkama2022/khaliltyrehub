@@ -44,6 +44,12 @@ const reviews = [
 ]
 
 export function HomePage() {
+  usePageMeta({
+    title: businessConfig.name,
+    description:
+      'Shop trusted passenger, SUV and commercial tyres with clear specifications and easy WhatsApp checkout.',
+    path: '/',
+  })
   const { products, loading } = useProducts()
   const featured = products.filter((product) => product.stock > 0).slice(0, 4)
 

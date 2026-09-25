@@ -8,6 +8,7 @@ import {
 import { ProductCard } from '../components/ProductCard'
 import { ProductSkeleton } from '../components/ProductSkeleton'
 import { useProducts } from '../context/ProductContext'
+import { usePageMeta } from '../hooks/usePageMeta'
 import type { SortOption, VehicleType } from '../types'
 
 const defaultFilters: CatalogueFilters = {
@@ -30,6 +31,12 @@ const sortLabels: Record<SortOption, string> = {
 }
 
 export function ShopPage() {
+  usePageMeta({
+    title: 'Shop Tyres',
+    description:
+      'Browse authentic passenger, SUV, commercial and performance tyres by brand, model, size, vehicle and rating.',
+    path: '/shop',
+  })
   const { products, loading, error } = useProducts()
   const [searchParams] = useSearchParams()
   const [search, setSearch] = useState(searchParams.get('q') || '')

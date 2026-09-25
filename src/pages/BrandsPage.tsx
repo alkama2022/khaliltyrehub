@@ -2,6 +2,7 @@ import { ArrowRight, BadgeCheck, ShieldCheck, Sparkles } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { useProducts } from '../context/ProductContext'
 import { formatCurrency } from '../lib/format'
+import { usePageMeta } from '../hooks/usePageMeta'
 
 const brandNotes: Record<string, string> = {
   Michelin: 'Premium comfort, confident braking and long road-life.',
@@ -16,6 +17,12 @@ const brandNotes: Record<string, string> = {
 }
 
 export function BrandsPage() {
+  usePageMeta({
+    title: 'Tyre Brands',
+    description:
+      'Shop authentic tyres from Michelin, Bridgestone, Goodyear, Continental and other trusted brands.',
+    path: '/brands',
+  })
   const { products } = useProducts()
   const brands = [...new Set(products.map((product) => product.brand))]
 

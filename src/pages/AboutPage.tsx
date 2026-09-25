@@ -2,6 +2,7 @@ import { ArrowRight, BadgeCheck, HeartHandshake, MessageCircle, ShieldCheck, Tar
 import { Link } from 'react-router-dom'
 import { businessConfig } from '../config/business'
 import { getWhatsAppUrl } from '../lib/whatsapp'
+import { usePageMeta } from '../hooks/usePageMeta'
 
 export function AboutPage() {
   return (
