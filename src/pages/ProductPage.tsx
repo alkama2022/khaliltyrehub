@@ -19,9 +19,9 @@ import { useEffect, useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { ProductCard } from '../components/ProductCard'
 import { Stars } from '../components/Stars'
-import { useCart } from '../context/CartContext'
-import { useProducts } from '../context/ProductContext'
-import { useToast } from '../context/ToastContext'
+import { useCart } from '../hooks/useCart'
+import { useProducts } from '../hooks/useProducts'
+import { useToast } from '../hooks/useToast'
 import { businessConfig } from '../config/business'
 import { formatCurrency, formatDate, pluralize } from '../lib/format'
 import { getWhatsAppUrl } from '../lib/whatsapp'
@@ -55,15 +55,26 @@ export function ProductPage() {
   })
   const { addItem } = useCart()
   const { showToast } = useToast()
-  const [selectedImage, setSelectedImage] = useState(0)
-  const [quantity, setQuantity] = useState(1)
+  const [viewState, setViewState] = useState({
+    productId: id ?? '',
+    imageIndex: 0,
+    quantity: 1,
+  })
   const [zoomImage, setZoomImage] = useState<string | null>(null)
   const product = products.find((item) => item.id === id)
-
-  useEffect(() => {
-    setSelectedImage(0)
-    setQuantity(1)
-  }, [id])
+  const selectedImage = viewState.productId === id ? viewState.imageIndex : 0
+  const quantity = viewState.productId === id ? viewState.quantity : 1
+  const setSelectedImage = (imageIndex: number) =>
+    setViewState((current) => ({ ...current, productId: id ?? '', imageIndex }))
+  const setQuantity = (nextQuantity: number | ((value: number) => number)) =>
+    setViewState((current) => ({
+      ...current,
+      productId: id ?? '',
+      quantity:
+        typeof nextQuantity === 'function'
+          ? nextQuantity(current.productId === id ? current.quantity : 1)
+          : nextQuantity,
+    }))
 
   useEffect(() => {
     if (!zoomImage) return
@@ -206,7 +217,7 @@ export function ProductPage() {
                   className="button button--whatsapp button--block button--large"
                   href={getWhatsAppUrl(`Hello ${businessConfig.name}, I am interested in the ${product.brand} ${product.name} (${product.size}). Is it available?`)}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                 >
                   <MessageCircle size={19} /> Ask about availability
                 </a>

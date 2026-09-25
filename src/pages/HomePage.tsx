@@ -15,7 +15,7 @@ import {
 import { Link } from 'react-router-dom'
 import { ProductCard } from '../components/ProductCard'
 import { ProductSkeleton } from '../components/ProductSkeleton'
-import { useProducts } from '../context/ProductContext'
+import { useProducts } from '../hooks/useProducts'
 import { businessConfig } from '../config/business'
 import { getWhatsAppUrl } from '../lib/whatsapp'
 import { usePageMeta } from '../hooks/usePageMeta'
@@ -253,7 +253,7 @@ export function HomePage() {
             className="button button--whatsapp button--large"
             href={getWhatsAppUrl(`Hello ${businessConfig.name}, I need help choosing tyres for my vehicle.`)}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
           >
             <MessageCircle size={20} /> Chat on WhatsApp
           </a>

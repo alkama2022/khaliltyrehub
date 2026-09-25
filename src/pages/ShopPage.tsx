@@ -7,7 +7,7 @@ import {
 } from '../components/FilterPanel'
 import { ProductCard } from '../components/ProductCard'
 import { ProductSkeleton } from '../components/ProductSkeleton'
-import { useProducts } from '../context/ProductContext'
+import { useProducts } from '../hooks/useProducts'
 import { usePageMeta } from '../hooks/usePageMeta'
 import type { SortOption, VehicleType } from '../types'
 
@@ -52,9 +52,12 @@ export function ShopPage() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
 
   useEffect(() => {
+    // Keep filter chips in sync when a footer/brand link opens a new query.
+    // oxlint-disable-next-line react/set-state-in-effect
     const brand = searchParams.get('brand')
     const size = searchParams.get('size')
     const vehicleType = searchParams.get('vehicleType') as VehicleType | null
+    // oxlint-disable-next-line react/set-state-in-effect
     setFilters((current) => ({
       ...current,
       brands: brand ? [brand] : [],

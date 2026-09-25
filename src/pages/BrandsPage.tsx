@@ -1,6 +1,6 @@
 import { ArrowRight, BadgeCheck, ShieldCheck, Sparkles } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { useProducts } from '../context/ProductContext'
+import { useProducts } from '../hooks/useProducts'
 import { formatCurrency } from '../lib/format'
 import { usePageMeta } from '../hooks/usePageMeta'
 

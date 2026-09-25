@@ -1,8 +1,8 @@
 import { Menu, MessageCircle, Phone, ShoppingBag, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { businessConfig } from '../config/business'
-import { useCart } from '../context/CartContext'
+import { useCart } from '../hooks/useCart'
 import { getWhatsAppUrl } from '../lib/whatsapp'
 import { Logo } from './Logo'
 
@@ -17,9 +17,6 @@ const navItems = [
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
   const { itemCount } = useCart()
-  const location = useLocation()
-
-  useEffect(() => setMenuOpen(false), [location.pathname])
 
   useEffect(() => {
     document.body.classList.toggle('menu-open', menuOpen)
@@ -40,7 +37,7 @@ export function Header() {
             <a
               href={getWhatsAppUrl(`Hello ${businessConfig.name}, I would like to ask about a tyre.`)}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
             >
               <MessageCircle size={13} /> WhatsApp us
             </a>
@@ -88,11 +85,12 @@ export function Header() {
               to={item.to}
               end={item.to === '/'}
               className={({ isActive }) => (isActive ? 'is-active' : '')}
+              onClick={() => setMenuOpen(false)}
             >
               {item.label}
             </NavLink>
           ))}
-          <NavLink to="/cart">
+          <NavLink to="/cart" onClick={() => setMenuOpen(false)}>
             Shopping cart {itemCount > 0 && <span className="mobile-nav__count">{itemCount}</span>}
           </NavLink>
         </nav>

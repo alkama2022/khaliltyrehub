@@ -1,14 +1,8 @@
-import {
-  createContext,
-  type ReactNode,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react'
+import { type ReactNode, useEffect, useMemo, useState } from 'react'
 import { readStorage, writeStorage } from '../lib/storage'
 import type { CartItem, CartLine, Product } from '../types'
-import { useProducts } from './ProductContext'
+import { useProducts } from '../hooks/useProducts'
+import { CartContext, type CartContextValue } from './cart-context'
 
 const CART_KEY = 'treadly_cart_v1'
 
@@ -16,18 +10,6 @@ interface AddResult {
   ok: boolean
   reason?: 'unavailable' | 'stock-limit'
 }
-
-interface CartContextValue {
-  items: CartLine[]
-  itemCount: number
-  subtotal: number
-  addItem: (product: Product, quantity?: number) => AddResult
-  updateQuantity: (productId: string, quantity: number) => void
-  removeItem: (productId: string) => void
-  clearCart: () => void
-}
-
-const CartContext = createContext<CartContextValue | null>(null)
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>(() =>
@@ -98,10 +80,4 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, [items, productLookup])
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>
-}
-
-export function useCart() {
-  const context = useContext(CartContext)
-  if (!context) throw new Error('useCart must be used inside CartProvider')
-  return context
 }

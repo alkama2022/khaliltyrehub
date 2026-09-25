@@ -88,7 +88,7 @@ export function AboutPage() {
             <h2>We’re ready to help you choose.</h2>
             <p>Send us your vehicle and current tyre size for a practical recommendation.</p>
           </div>
-          <a className="button button--whatsapp button--large" href={getWhatsAppUrl(`Hello ${businessConfig.name}, I need help choosing tyres for my vehicle.`)} target="_blank" rel="noreferrer">
+          <a className="button button--whatsapp button--large" href={getWhatsAppUrl(`Hello ${businessConfig.name}, I need help choosing tyres for my vehicle.`)} target="_blank" rel="noopener noreferrer">
             <MessageCircle size={20} /> Chat with an expert
           </a>
         </div>

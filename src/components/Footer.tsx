@@ -13,19 +13,19 @@ export function Footer() {
           <p>{businessConfig.description}</p>
           <div className="footer__socials">
             {businessConfig.social.instagram && (
-              <a href={businessConfig.social.instagram} target="_blank" rel="noreferrer" aria-label="Instagram">
+              <a href={businessConfig.social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                 <Camera size={18} />
               </a>
             )}
             {businessConfig.social.facebook && (
-              <a href={businessConfig.social.facebook} target="_blank" rel="noreferrer" aria-label="Facebook">
+              <a href={businessConfig.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                 <Globe2 size={18} />
               </a>
             )}
             <a
               href={getWhatsAppUrl(`Hello ${businessConfig.name}, I need help choosing a tyre.`)}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               aria-label="WhatsApp"
             >
               <MessageCircle size={18} />
@@ -44,7 +44,7 @@ export function Footer() {
           <Link to="/about">About {businessConfig.name}</Link>
           <Link to="/contact">Contact us</Link>
           <Link to="/contact#fitment">Tyre fitment help</Link>
-          <Link to="/admin">Shop admin</Link>
+          {businessConfig.isAdminDemoEnabled && <Link to="/admin">Shop admin</Link>}
         </div>
         <div className="footer__contact">
           <h3>Talk to a tyre expert</h3>
@@ -59,7 +59,7 @@ export function Footer() {
             className="footer__whatsapp"
             href={getWhatsAppUrl(`Hello ${businessConfig.name}, I would like help choosing the right tyre.`)}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
           >
             <MessageCircle size={17} /> Start a WhatsApp chat <ArrowRight size={15} />
           </a>

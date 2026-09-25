@@ -19,8 +19,8 @@ import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AdminProductModal } from '../components/AdminProductModal'
 import { businessConfig } from '../config/business'
-import { useProducts } from '../context/ProductContext'
-import { useToast } from '../context/ToastContext'
+import { useProducts } from '../hooks/useProducts'
+import { useToast } from '../hooks/useToast'
 import { usePageMeta } from '../hooks/usePageMeta'
 import { formatCurrency, formatDate, pluralize } from '../lib/format'
 import { getOrderRecords } from '../lib/whatsapp'
@@ -110,6 +110,9 @@ export function AdminPage() {
             <button className={tab === 'reviews' ? 'is-active' : ''} onClick={() => setTab('reviews')}><Star size={18} /> Reviews <span>{allReviews.length}</span></button>
           </nav>
           <div className="admin-sidebar__note"><ShieldCheck size={18} /><p><strong>Local demo workspace</strong>Changes are stored in this browser. Connect a protected API before production.</p></div>
+          {import.meta.env.PROD && !businessConfig.isWhatsAppConfigured && (
+            <div className="admin-sidebar__warning"><AlertTriangle size={15} /><span>Set <code>VITE_WHATSAPP_NUMBER</code> before accepting orders.</span></div>
+          )}
           <Link to="/" className="admin-sidebar__back">← Back to storefront</Link>
         </aside>
 

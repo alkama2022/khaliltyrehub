@@ -1,6 +1,6 @@
 import { CheckCircle2, MessageCircle, ShieldCheck, X } from 'lucide-react'
 import { type FormEvent, useEffect, useState } from 'react'
-import { useToast } from '../context/ToastContext'
+import { useToast } from '../hooks/useToast'
 import { businessConfig } from '../config/business'
 import { formatCurrency, pluralize } from '../lib/format'
 import { openWhatsAppOrder } from '../lib/whatsapp'
@@ -63,12 +63,11 @@ export function WhatsAppCheckoutModal({ cart, onClose }: WhatsAppCheckoutModalPr
     }
 
     setSubmitting(true)
-    window.setTimeout(() => {
-      openWhatsAppOrder(cart, values)
-      setSubmitting(false)
-      showToast('Your order is ready in WhatsApp')
-      onClose()
-    }, 350)
+    // Open synchronously from the user gesture so mobile browsers do not block it.
+    openWhatsAppOrder(cart, values)
+    setSubmitting(false)
+    showToast('Your order is ready in WhatsApp')
+    onClose()
   }
 
   return (

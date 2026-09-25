@@ -2,7 +2,7 @@ import { ChevronDown, Clock3, Mail, MapPin, MessageCircle, Phone, ShieldCheck } 
 import { type FormEvent, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { businessConfig } from '../config/business'
-import { useToast } from '../context/ToastContext'
+import { useToast } from '../hooks/useToast'
 import { getWhatsAppUrl } from '../lib/whatsapp'
 import { usePageMeta } from '../hooks/usePageMeta'
 
@@ -97,7 +97,7 @@ Message: ${form.message}`
             <div className="contact-details__whatsapp">
               <MessageCircle size={25} />
               <div><strong>Prefer WhatsApp?</strong><span>Start a quick conversation with our team.</span></div>
-              <a href={getWhatsAppUrl(`Hello ${businessConfig.name}, I need help with tyres.`)} target="_blank" rel="noreferrer">Open chat</a>
+              <a href={getWhatsAppUrl(`Hello ${businessConfig.name}, I need help with tyres.`)} target="_blank" rel="noopener noreferrer">Open chat</a>
             </div>
           </aside>
         </div>

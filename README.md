@@ -13,9 +13,11 @@ npm run dev
 Production build:
 
 ```bash
-npm run build
+npm run build:production
 npm run preview
 ```
+
+`build:production` refuses to build until the required WhatsApp number and site URL are present. Use `npm run build` for a local/UI-only build.
 
 ## Configure the business WhatsApp number
 
@@ -25,7 +27,7 @@ Set `VITE_WHATSAPP_NUMBER` in `.env` to the WhatsApp country code and business n
 VITE_WHATSAPP_NUMBER=2348001234567
 ```
 
-The sample value must be replaced before launch. Business name, contact details, address and currency live in `src/config/business.ts`.
+The sample value must be replaced before launch. Business name, contact details, address and currency can be set through `.env`; defaults live in `src/config/business.ts`.
 
 ## What is included
 
@@ -45,12 +47,13 @@ The sample value must be replaced before launch. Business name, contact details,
 2. Replace the sample business name, email, phone, address, social links and `VITE_SITE_URL` with live details.
 3. Update the canonical URL, Open Graph URL, `robots.txt` and `sitemap.xml` if the production domain is different from `treadly.ng`.
 4. Replace sample products and demo photography with verified catalogue data and original product images.
-5. Move the product repository to a real API/database and protect `/admin` with authentication before exposing the admin area.
-6. Configure the hosting platform to use `npm run build` and serve `dist/`. `public/_redirects` handles SPA fallback on Netlify-compatible hosts; `vercel.json` covers Vercel.
+5. Move the product repository to a real API/database and protect `/admin` with authentication before exposing the admin area. The production build disables the local admin demo by default; set `VITE_ENABLE_ADMIN_DEMO=true` only for a temporary internal preview.
+6. Configure the hosting platform to use `npm run build:production` and serve `dist/`. `public/_redirects` handles SPA fallback on Netlify-compatible hosts; `vercel.json` covers Vercel.
 7. Test the complete order flow on a real phone in both desktop and mobile browsers.
 
 The frontend exposes only public business values through Vite environment variables. Never put private API keys, database credentials or admin secrets in `VITE_*` variables because they are shipped to the browser.
 
+## Architecture
 
 ```text
 src/
@@ -61,7 +64,9 @@ src/
 ├── lib/            Formatting, storage and WhatsApp utilities
 ├── pages/          Route-level screens
 ├── services/       Replaceable local product repository
-└── types/          Shared domain models
+├── hooks/          Page metadata and context hooks
+├── types/          Shared domain models
+└── scripts/        Production environment verification
 ```
 
 The local product repository in `src/services/productService.ts` intentionally mirrors async API behavior. Replace its methods with HTTP requests later while keeping the existing `ProductProvider` and UI contracts.
