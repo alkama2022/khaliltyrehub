@@ -9,8 +9,7 @@ export const businessConfig = {
   description:
     env.VITE_BUSINESS_DESCRIPTION ||
     'Trusted tyres, transparent pricing and expert support for every drive.',
-  whatsappNumber:
-    cleanPhone(env.VITE_WHATSAPP_NUMBER) || '2348001234567',
+  whatsappNumber: cleanPhone(env.VITE_WHATSAPP_NUMBER),
   phoneDisplay:
     env.VITE_BUSINESS_PHONE_DISPLAY || '+234 800 123 4567',
   email: env.VITE_BUSINESS_EMAIL || 'hello@treadly.ng',

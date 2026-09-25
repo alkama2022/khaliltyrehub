@@ -36,8 +36,15 @@ Delivery/location: ${customer.address}${customer.note ? `\nNote: ${customer.note
 Please confirm availability and delivery details.`
 }
 
-export const getWhatsAppUrl = (message: string) =>
-  `https://wa.me/${businessConfig.whatsappNumber}?text=${encodeURIComponent(message)}`
+export const getWhatsAppUrl = (message: string) => {
+  const encodedMessage = encodeURIComponent(message)
+  if (!businessConfig.whatsappNumber) {
+    // Keep an unconfigured build safe: WhatsApp opens its contact picker instead
+    // of sending a customer enquiry to a made-up business number.
+    return `https://wa.me/?text=${encodedMessage}`
+  }
+  return `https://wa.me/${businessConfig.whatsappNumber}?text=${encodedMessage}`
+}
 
 export const openWhatsAppOrder = (
   cart: CartLine[],

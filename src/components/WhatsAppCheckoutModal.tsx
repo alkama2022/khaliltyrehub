@@ -43,6 +43,7 @@ export function WhatsAppCheckoutModal({ cart, onClose }: WhatsAppCheckoutModalPr
   const updateValue = (field: keyof CustomerDetails, value: string) => {
     setValues((current) => ({ ...current, [field]: value }))
     if (errors[field]) setErrors((current) => ({ ...current, [field]: undefined }))
+    if (submitError) setSubmitError('')
   }
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -142,6 +143,7 @@ export function WhatsAppCheckoutModal({ cart, onClose }: WhatsAppCheckoutModalPr
                 onChange={(event) => updateValue('note', event.target.value)}
               />
             </div>
+            {submitError && <p className="form-error checkout-error">{submitError}</p>}
             <button type="submit" className="button button--whatsapp button--block" disabled={submitting}>
               <MessageCircle size={19} />
               {submitting ? 'Preparing your order…' : 'Open WhatsApp & send order'}
