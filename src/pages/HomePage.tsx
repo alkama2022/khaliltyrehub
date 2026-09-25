@@ -194,10 +194,10 @@ export function HomePage() {
             <div className="story-visual__badge"><strong>2,500+</strong><span>tyres supplied</span></div>
           </div>
           <div className="story-content">
-            <span className="section-kicker">About Treadly</span>
+            <span className="section-kicker">About {businessConfig.name}</span>
             <h2>Tyre shopping, without the stress.</h2>
             <p>
-              We started Treadly to make it easier for Nigerian drivers to access
+              We started {businessConfig.name} to make it easier for Nigerian drivers to access
               quality tyres, understand their options and order from a real business
               that stands behind every product.
             </p>

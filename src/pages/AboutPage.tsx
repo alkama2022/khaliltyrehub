@@ -10,12 +10,12 @@ export function AboutPage() {
         <div className="container about-hero__grid">
           <div>
             <div className="breadcrumbs"><Link to="/">Home</Link><span>/</span><span>About</span></div>
-            <span className="section-kicker section-kicker--light">About Treadly</span>
+            <span className="section-kicker section-kicker--light">About {businessConfig.name}</span>
             <h1>Keeping more drivers moving with confidence.</h1>
             <p>We make it easier to find, understand and order quality tyres without the guesswork.</p>
           </div>
           <div className="about-hero__image">
-            <img src="/images/tyre-studio.jpg" alt="Quality tyres in the Treadly store" />
+            <img src="/images/tyre-studio.jpg" alt={`Quality tyres in the ${businessConfig.name} store`} />
             <div><strong>2,500+</strong><span>tyres supplied</span></div>
           </div>
         </div>

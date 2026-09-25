@@ -18,6 +18,7 @@ import {
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AdminProductModal } from '../components/AdminProductModal'
+import { businessConfig } from '../config/business'
 import { useProducts } from '../context/ProductContext'
 import { useToast } from '../context/ToastContext'
 import { formatCurrency, formatDate, pluralize } from '../lib/format'

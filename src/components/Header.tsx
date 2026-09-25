@@ -38,7 +38,7 @@ export function Header() {
               <Phone size={13} /> {businessConfig.phoneDisplay}
             </a>
             <a
-              href={getWhatsAppUrl('Hello Treadly, I would like to ask about a tyre.')}
+              href={getWhatsAppUrl(`Hello ${businessConfig.name}, I would like to ask about a tyre.`)}
               target="_blank"
               rel="noreferrer"
             >

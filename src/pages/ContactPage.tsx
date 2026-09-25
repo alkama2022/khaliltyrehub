@@ -99,7 +99,7 @@ Message: ${form.message}`
       <section className="map-section" id="map">
         <div className="map-placeholder">
           <div className="map-placeholder__roads" />
-          <div className="map-pin"><span><MapPin size={24} /></span><strong>Treadly</strong><small>Ikeja, Lagos</small></div>
+          <div className="map-pin"><span><MapPin size={24} /></span><strong>{businessConfig.name}</strong><small>Ikeja, Lagos</small></div>
         </div>
       </section>
 

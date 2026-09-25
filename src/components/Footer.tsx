@@ -23,7 +23,7 @@ export function Footer() {
               </a>
             )}
             <a
-              href={getWhatsAppUrl('Hello Treadly, I need help choosing a tyre.')}
+              href={getWhatsAppUrl(`Hello ${businessConfig.name}, I need help choosing a tyre.`)}
               target="_blank"
               rel="noreferrer"
               aria-label="WhatsApp"
@@ -57,7 +57,7 @@ export function Footer() {
           <span><MapPin size={17} /> {businessConfig.address}</span>
           <a
             className="footer__whatsapp"
-            href={getWhatsAppUrl('Hello Treadly, I would like help choosing the right tyre.')}
+            href={getWhatsAppUrl(`Hello ${businessConfig.name}, I would like help choosing the right tyre.`)}
             target="_blank"
             rel="noreferrer"
           >
