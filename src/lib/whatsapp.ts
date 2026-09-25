@@ -1,6 +1,7 @@
 import { businessConfig } from '../config/business'
 import type { CartLine, CustomerDetails, OrderRecord } from '../types'
 import { formatCurrency, pluralize } from './format'
+import { writeStorage } from './storage'
 
 export const buildWhatsAppOrder = (
   cart: CartLine[],
@@ -55,7 +56,7 @@ export const openWhatsAppOrder = (
   const existing = readOrderRecords().filter(
     (item) => Date.now() - new Date(item.createdAt).getTime() < 1000 * 60 * 60 * 24 * 30,
   )
-  localStorage.setItem('treadly_orders', JSON.stringify([order, ...existing]))
+  writeStorage('treadly_orders', [order, ...existing])
   window.open(getWhatsAppUrl(message), '_blank', 'noopener,noreferrer')
   return order
 }

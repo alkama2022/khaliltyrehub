@@ -12,8 +12,16 @@ export function Footer() {
           <Logo light />
           <p>{businessConfig.description}</p>
           <div className="footer__socials">
-            <a href="#" aria-label="Social gallery"><Camera size={18} /></a>
-            <a href="#" aria-label="Social updates"><Globe2 size={18} /></a>
+            {businessConfig.social.instagram && (
+              <a href={businessConfig.social.instagram} target="_blank" rel="noreferrer" aria-label="Instagram">
+                <Camera size={18} />
+              </a>
+            )}
+            {businessConfig.social.facebook && (
+              <a href={businessConfig.social.facebook} target="_blank" rel="noreferrer" aria-label="Facebook">
+                <Globe2 size={18} />
+              </a>
+            )}
             <a
               href={getWhatsAppUrl('Hello Treadly, I need help choosing a tyre.')}
               target="_blank"

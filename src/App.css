@@ -12,6 +12,31 @@
   padding: 96px 0;
 }
 
+.route-loading {
+  align-items: center;
+  background: var(--surface);
+  color: var(--muted);
+  display: flex;
+  flex-direction: column;
+  font-size: 0.7rem;
+  gap: 13px;
+  justify-content: center;
+  min-height: 55vh;
+}
+
+.route-loading__spinner {
+  animation: route-spin 700ms linear infinite;
+  border: 2px solid #d8dad7;
+  border-radius: 50%;
+  border-top-color: var(--accent);
+  height: 27px;
+  width: 27px;
+}
+
+@keyframes route-spin {
+  to { transform: rotate(360deg); }
+}
+
 .section-kicker {
   display: inline-flex;
   align-items: center;

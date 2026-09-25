@@ -1,13 +1,18 @@
 {
-  "name": "tire",
+  "name": "treadly-tyre-storefront",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "typecheck": "tsc -b --pretty false",
     "lint": "oxlint",
+    "check": "npm run typecheck && npm run lint && npm run build",
     "preview": "vite preview"
+  },
+  "engines": {
+    "node": ">=20.19.0"
   },
   "dependencies": {
     "lucide-react": "^1.48.0",
