@@ -5,6 +5,14 @@ import { getWhatsAppUrl } from '../lib/whatsapp'
 import { usePageMeta } from '../hooks/usePageMeta'
 
 export function AboutPage() {
+  usePageMeta({
+    title: 'About Us',
+    description:
+      'Learn how Treadly makes quality tyres, fitment guidance and transparent ordering easier.',
+    path: '/about',
+    image: '/images/tyre-studio.jpg',
+  })
+
   return (
     <>
       <section className="page-hero page-hero--about">

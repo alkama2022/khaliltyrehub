@@ -1,7 +1,15 @@
 import { ArrowLeft, SearchX } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { usePageMeta } from '../hooks/usePageMeta'
 
 export function NotFoundPage() {
+  usePageMeta({
+    title: 'Page Not Found',
+    description: 'The requested page could not be found.',
+    path: '/404',
+    noIndex: true,
+  })
+
   return (
     <section className="not-found page-section">
       <div className="container not-found__inner">

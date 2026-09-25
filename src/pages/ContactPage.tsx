@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { businessConfig } from '../config/business'
 import { useToast } from '../context/ToastContext'
 import { getWhatsAppUrl } from '../lib/whatsapp'
+import { usePageMeta } from '../hooks/usePageMeta'
 
 const faqs = [
   ['How do I know which tyre size I need?', 'Look for the full size printed on the sidewall of your current tyre, such as 205/55 R16. You can also check your vehicle handbook. Send us the details if you would like confirmation.'],
@@ -13,6 +14,12 @@ const faqs = [
 ]
 
 export function ContactPage() {
+  usePageMeta({
+    title: 'Contact & Fitment Help',
+    description:
+      'Contact the Treadly team for tyre size guidance, product availability, fitting and delivery information.',
+    path: '/contact',
+  })
   const [form, setForm] = useState({ name: '', phone: '', vehicle: '', size: '', message: '' })
   const [error, setError] = useState('')
   const [openFaq, setOpenFaq] = useState(0)

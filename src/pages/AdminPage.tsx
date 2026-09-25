@@ -21,6 +21,7 @@ import { AdminProductModal } from '../components/AdminProductModal'
 import { businessConfig } from '../config/business'
 import { useProducts } from '../context/ProductContext'
 import { useToast } from '../context/ToastContext'
+import { usePageMeta } from '../hooks/usePageMeta'
 import { formatCurrency, formatDate, pluralize } from '../lib/format'
 import { getOrderRecords } from '../lib/whatsapp'
 import type { Product } from '../types'
@@ -28,6 +29,12 @@ import type { Product } from '../types'
 type AdminTab = 'overview' | 'products' | 'orders' | 'reviews'
 
 export function AdminPage() {
+  usePageMeta({
+    title: 'Store Admin',
+    description: 'Treadly catalogue and order workspace.',
+    path: '/admin',
+    noIndex: true,
+  })
   const { products, saveProduct, deleteProduct, resetProducts } = useProducts()
   const { showToast } = useToast()
   const [tab, setTab] = useState<AdminTab>('overview')
