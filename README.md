@@ -39,7 +39,18 @@ The sample value must be replaced before launch. Business name, contact details,
 - Local admin workspace for product CRUD, image selection, pricing, stock, reviews and generated WhatsApp-order records
 - Loading, empty, error, unavailable and toast states
 
-## Architecture
+## Production checklist
+
+1. Set every value in `.env` from `.env.example`, especially a verified `VITE_WHATSAPP_NUMBER`.
+2. Replace the sample business name, email, phone, address, social links and `VITE_SITE_URL` with live details.
+3. Update the canonical URL, Open Graph URL, `robots.txt` and `sitemap.xml` if the production domain is different from `treadly.ng`.
+4. Replace sample products and demo photography with verified catalogue data and original product images.
+5. Move the product repository to a real API/database and protect `/admin` with authentication before exposing the admin area.
+6. Configure the hosting platform to use `npm run build` and serve `dist/`. `public/_redirects` handles SPA fallback on Netlify-compatible hosts; `vercel.json` covers Vercel.
+7. Test the complete order flow on a real phone in both desktop and mobile browsers.
+
+The frontend exposes only public business values through Vite environment variables. Never put private API keys, database credentials or admin secrets in `VITE_*` variables because they are shipped to the browser.
+
 
 ```text
 src/
