@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom'
+import { businessConfig } from '../config/business'
 
 export function Logo({ light = false }: { light?: boolean }) {
   return (
     <Link
       to="/"
       className={`logo ${light ? 'logo--light' : ''}`}
-      aria-label="Treadly home"
+      aria-label={`${businessConfig.name} home`}
     >
       <span className="logo__mark" aria-hidden="true">
         <svg viewBox="0 0 42 42" role="img">
@@ -14,7 +15,7 @@ export function Logo({ light = false }: { light?: boolean }) {
           <path d="M21 4v10M21 28v10M4 21h10M28 21h10" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
         </svg>
       </span>
-      <span className="logo__word">TREADLY</span>
+      <span className="logo__word">{businessConfig.name.toUpperCase()}</span>
     </Link>
   )
 }

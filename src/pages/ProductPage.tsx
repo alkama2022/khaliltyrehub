@@ -247,7 +247,7 @@ export function ProductPage() {
               <span className="section-kicker">Real customer feedback</span>
               <h2>What drivers are saying</h2>
             </div>
-            <p>Reviews are collected from verified Treadly customers.</p>
+            <p>Reviews are collected from verified {businessConfig.name} customers.</p>
           </div>
           <div className="reviews-summary">
             <div className="reviews-score">

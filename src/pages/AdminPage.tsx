@@ -95,7 +95,7 @@ export function AdminPage() {
     <section className="admin-page">
       <div className="container admin-layout">
         <aside className="admin-sidebar">
-          <div className="admin-sidebar__brand"><span><BarChart3 size={20} /></span><div><strong>Treadly admin</strong><small>Store workspace</small></div></div>
+          <div className="admin-sidebar__brand"><span><BarChart3 size={20} /></span><div><strong>{businessConfig.name} admin</strong><small>Store workspace</small></div></div>
           <nav className="admin-tabs" aria-label="Admin sections">
             <button className={tab === 'overview' ? 'is-active' : ''} onClick={() => setTab('overview')}><BarChart3 size={18} /> Overview</button>
             <button className={tab === 'products' ? 'is-active' : ''} onClick={() => setTab('products')}><Package size={18} /> Tyre catalogue <span>{products.length}</span></button>

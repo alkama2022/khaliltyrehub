@@ -41,7 +41,7 @@ export function Footer() {
         </div>
         <div>
           <h3>Company</h3>
-          <Link to="/about">About Treadly</Link>
+          <Link to="/about">About {businessConfig.name}</Link>
           <Link to="/contact">Contact us</Link>
           <Link to="/contact#fitment">Tyre fitment help</Link>
           <Link to="/admin">Shop admin</Link>
