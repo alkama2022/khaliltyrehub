@@ -1,4 +1,4 @@
-import { ArrowRight, Facebook, Instagram, Mail, MapPin, MessageCircle, Phone } from 'lucide-react'
+import { ArrowRight, Camera, Globe2, Mail, MapPin, MessageCircle, Phone } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { businessConfig } from '../config/business'
 import { getWhatsAppUrl } from '../lib/whatsapp'
@@ -12,8 +12,8 @@ export function Footer() {
           <Logo light />
           <p>{businessConfig.description}</p>
           <div className="footer__socials">
-            <a href="#" aria-label="Instagram"><Instagram size={18} /></a>
-            <a href="#" aria-label="Facebook"><Facebook size={18} /></a>
+            <a href="#" aria-label="Social gallery"><Camera size={18} /></a>
+            <a href="#" aria-label="Social updates"><Globe2 size={18} /></a>
             <a
               href={getWhatsAppUrl('Hello Treadly, I need help choosing a tyre.')}
               target="_blank"
