@@ -1,6 +1,7 @@
 import { CheckCircle2, MessageCircle, ShieldCheck, X } from 'lucide-react'
 import { type FormEvent, useEffect, useState } from 'react'
 import { useToast } from '../context/ToastContext'
+import { businessConfig } from '../config/business'
 import { formatCurrency, pluralize } from '../lib/format'
 import { openWhatsAppOrder } from '../lib/whatsapp'
 import type { CartLine, CustomerDetails } from '../types'
@@ -20,10 +21,12 @@ export function WhatsAppCheckoutModal({ cart, onClose }: WhatsAppCheckoutModalPr
     note: '',
   })
   const [errors, setErrors] = useState<FormErrors>({})
+  const [submitError, setSubmitError] = useState('')
   const [submitting, setSubmitting] = useState(false)
   const { showToast } = useToast()
   const subtotal = cart.reduce((sum, item) => sum + item.lineTotal, 0)
   const quantity = cart.reduce((sum, item) => sum + item.quantity, 0)
+  const whatsappUnavailable = import.meta.env.PROD && !businessConfig.isWhatsAppConfigured
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -44,6 +47,10 @@ export function WhatsAppCheckoutModal({ cart, onClose }: WhatsAppCheckoutModalPr
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    if (whatsappUnavailable) {
+      setSubmitError('WhatsApp ordering is not configured yet. Please contact the store directly.')
+      return
+    }
     const nextErrors: FormErrors = {}
     if (values.fullName.trim().length < 2) nextErrors.fullName = 'Enter your full name'
     const digits = values.phone.replace(/\D/g, '')

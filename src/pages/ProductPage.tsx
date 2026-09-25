@@ -49,9 +49,9 @@ export function ProductPage() {
       ? `${productForMeta.brand} ${productForMeta.name}`
       : 'Tyre not found',
     description: productForMeta?.description || 'View tyre specifications, availability and customer reviews.',
-    path: productForMeta ? `/tyre/${productForMeta.id}` : '/shop',
+    path: productForMeta ? `/tyre/${productForMeta.id}` : '/404',
     image: productForMeta?.images[0],
-    noIndex: !productForMeta && !products.length,
+    noIndex: !productForMeta,
   })
   const { addItem } = useCart()
   const { showToast } = useToast()
