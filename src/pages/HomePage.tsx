@@ -18,6 +18,7 @@ import { ProductSkeleton } from '../components/ProductSkeleton'
 import { useProducts } from '../context/ProductContext'
 import { businessConfig } from '../config/business'
 import { getWhatsAppUrl } from '../lib/whatsapp'
+import { usePageMeta } from '../hooks/usePageMeta'
 
 const brands = ['Michelin', 'Bridgestone', 'Goodyear', 'Continental', 'Dunlop', 'Pirelli']
 
